@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>Login für Daph</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: 'Georgia', serif;
+            background-color: #ffebee;
+            margin: 0;
+            padding: 0 10px; /* Etwas Innenabstand für Mobilgeräte */
+        }
+        .login-container, .message-container {
+            display: none;
+            padding: 20px;
+            border: 2px solid #c2185b;
+            border-radius: 12px;
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+            background-color: white;
+            max-width: 90%; /* Breite auf max. 90% begrenzen */
+            width: 100%;
+            box-sizing: border-box; /* Außenabstand für Mobilgeräte vermeiden */
+        }
+        .login-container {
+            display: block;
+        }
+        h2 {
+            color: #c2185b;
+            text-align: center;
+            font-size: 1.5em; /* Etwas kleinere Schriftgröße für Mobilgeräte */
+        }
+        input[type="text"], input[type="password"] {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 2px solid #c2185b;
+            border-radius: 5px;
+            font-size: 1em;
+            box-sizing: border-box;
+        }
+        button {
+            width: 100%;
+            padding: 12px;
+            color: white;
+            background-color: #c2185b;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+        }
+        button:hover {
+            background-color: #a50034;
+        }
+        label {
+            font-size: 1em;
+            display: block;
+            margin-bottom: 10px; /* Abstände für die Optionen */
+        }
+        p {
+            font-size: 1em;
+            line-height: 1.4;
+            text-align: center; /* Zentrierter Text */
+        }
+    </style>
+</head>
+<body>
+
+<div class="login-container" id="loginContainer">
+    <h2>Login</h2>
+    <input type="text" id="username" placeholder="Benutzername" required>
+    <input type="password" id="password" placeholder="Passwort" required>
+    <button onclick="checkLogin()">Einloggen</button>
+</div>
+
+<div class="message-container" id="messageContainer">
+    <h2>To My Daphinçi</h2>
+    <p> 
+        Hallo Daph,
+        <br /> Ich habe diese kleine Webseite gebaut, um dich was wichtiges zu fragen.
+        <br /> Das sind 3 Möglichkeiten für die Sachen die Wir am Mitwoch zusammen machen können.
+        <br /> Du kannst entscheiden:
+    </p>
+
+    <form id="optionsForm">
+        <label><input type="radio" name="options" value="FKK Tag und liebe Machen im Bett" required> FKK Tag und liebe Machen im Bett </label>
+        <label><input type="radio" name="options" value="FKK Tag und liebe Machen auf dem Sofa" required> FKK Tag und liebe Machen auf dem Sofa </label>
+        <label><input type="radio" name="options" value="FKK Tag und liebe Machen in der Küche" required> FKK Tag und liebe Machen in der Küche </label>
+        <label><input type="radio" name="options" value="Alles gleichzeitig" required> Alles gleichzeitig </label>
+        <br />
+        <button type="button" onclick="submitChoices()">Abschicken</button>
+    </form>
+</div>
+
+<script>
+    function checkLogin() {
+        const correctUsername = "Daphinci"; //  gewünschten Benutzernamen
+        const correctPassword = "Daph<3Waf"; //  gewünschte Passwort
+
+        const username = document.getElementById("username").value;
+        const password = document.getElementById("password").value;
+
+        if (username === correctUsername && password === correctPassword) {
+            document.getElementById("loginContainer").style.display = "none";
+            document.getElementById("messageContainer").style.display = "block";
+        } else {
+            alert("Diese Webseite ist nur für Daphne gemacht, du hast kein Zugriff");
+        }
+    }
+
+    function submitChoices() {
+        const selectedOption = document.querySelector('input[name="options"]:checked');
+        if (!selectedOption) {
+            alert("Bitte wähle eine Option aus.");
+        } else {
+            const message = selectedOption.value;
+
+            alert(" OK klicken und ich bekomme dann deine Nachricht :) ");
+
+            const whatsappMessage = encodeURIComponent(message);
+            const whatsappLink = `https://wa.me/4917632371605?text=${whatsappMessage}`;
+
+            window.open(whatsappLink, '_blank');
+        }
+    }
+</script>
+
+</body>
+</html>
